@@ -1,0 +1,528 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Khushi Malik | Certifications</title>
+    <link rel="icon" type="image/jpeg" href="../images/logo.jpg">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <style>
+        /* --- PROFESSIONAL RESET & VARIABLES --- */
+        :root {
+            --bg-color: #ffffff;
+            --text-main: #1a1a1a;
+            --text-muted: #4a4a4a;
+            --accent-color: #003366; 
+            --accent-gradient: linear-gradient(135deg, #003366, #008080);
+            --border-color: #e5e5e5;
+            --transition: all 0.3s ease-in-out;
+        }
+
+        html { scroll-behavior: smooth; }
+
+        body {
+            font-family: 'Times New Roman', Times, serif;
+            margin: 0; padding: 0;
+            color: var(--text-main);
+            background: linear-gradient(-45deg, #ffffff, #f4f7f9, #eaeff5, #ffffff);
+            background-size: 400% 400%;
+            animation: subtleBackground 15s ease infinite;
+            line-height: 1.6;
+            overflow-x: hidden;
+            display: flex; flex-direction: column; min-height: 100vh;
+        }
+
+        @keyframes subtleBackground {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        /* --- GLOBAL ANIMATED MATH GRID --- */
+        .math-grid {
+            position: fixed; 
+            top: 0; left: 0; right: 0; bottom: 0;
+            background-image: 
+                linear-gradient(rgba(0, 51, 102, 0.04) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(0, 51, 102, 0.04) 1px, transparent 1px);
+            background-size: 40px 40px;
+            z-index: -1;
+            mask-image: radial-gradient(ellipse at center, black 40%, transparent 80%);
+            -webkit-mask-image: radial-gradient(ellipse at center, black 40%, transparent 80%);
+            animation: panGrid 20s linear infinite;
+        }
+
+        @keyframes panGrid {
+            from { background-position: 0 0; }
+            to { background-position: 40px 40px; }
+        }
+
+        /* --- SCROLL ANIMATION CLASSES --- */
+        .fade-in-element {
+            opacity: 0;
+            transform: translateY(25px);
+            transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+            will-change: opacity, transform;
+        }
+        .fade-in-element.is-visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        a { text-decoration: none; color: var(--accent-color); transition: var(--transition); }
+
+        /* --- HEADER & BRANDING --- */
+        header {
+            background-color: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid var(--border-color);
+            padding: 20px 5%;
+            position: sticky; top: 0; z-index: 1000;
+        }
+
+        .header-container {
+            max-width: 1200px; margin: 0 auto;
+            display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 20px;
+        }
+
+        .brand-wrapper { display: flex; align-items: center; gap: 15px; }
+
+        .logo {
+            height: 65px; width: auto; object-fit: cover;
+            clip-path: inset(4% round 14px); 
+            transition: transform 0.3s ease, filter 0.3s ease;
+        }
+
+        .logo:hover { transform: scale(1.05); filter: brightness(1.15); }
+
+        .brand-text { display: flex; flex-direction: column; overflow: hidden; }
+
+        .name-heading {
+            margin: 0; font-size: 1.75rem; font-weight: bold;
+            background: var(--accent-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            letter-spacing: 0.5px;
+        }
+
+        .tagline {
+            margin: 0; font-size: .95rem; font-style: italic; color: var(--text-muted);
+            display: inline-block; white-space: nowrap; overflow: hidden;
+            border-right: 2px solid var(--accent-color);
+            animation: typingCode 3.5s steps(45, end), blinkCursor .75s step-end infinite;
+        }
+
+        @keyframes typingCode { from { width: 0; } to { width: 100%; } }
+        @keyframes blinkCursor { from, to { border-color: transparent; } 50% { border-color: var(--accent-color); } }
+
+        /* --- NAVIGATION --- */
+        nav { display: flex; flex-wrap: wrap; gap: 15px; align-items: center; }
+
+        nav a {
+            color: var(--text-muted); font-size: 0.95rem; padding: 5px 0; position: relative;
+        }
+
+        nav a:hover, nav a.active { color: var(--accent-color); }
+
+        nav a::after {
+            content: ''; position: absolute; width: 0; height: 1px; bottom: 0; left: 0;
+            background-color: var(--accent-color); transition: width 0.3s ease;
+        }
+
+        nav a:hover::after, nav a.active::after { width: 100%; }
+
+        .social-links { display: flex; gap: 15px; }
+        .social-icon { color: var(--text-muted); font-size: 1.2rem; }
+        .social-icon:hover { color: var(--accent-color); transform: translateY(-2px); }
+
+        /* --- CERTIFICATIONS SECTION STYLES --- */
+        main { flex-grow: 1; }
+
+        .certifications-section {
+            padding: 80px 5%; max-width: 1000px; margin: 0 auto; position: relative; z-index: 1;
+        }
+
+        .section-title {
+            font-size: 2rem; color: var(--accent-color);
+            border-bottom: 2px solid var(--border-color);
+            padding-bottom: 10px; margin-bottom: 40px; font-weight: normal;
+            display: flex; align-items: center; gap: 12px;
+        }
+
+        .cert-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 35px; margin-top: 20px;
+        }
+
+        .cert-card {
+            background: rgba(255, 255, 255, 0.85); backdrop-filter: blur(8px);
+            border: 1px solid var(--border-color); border-radius: 12px; overflow: hidden;
+            transition: var(--transition);
+            display: flex;
+            flex-direction: column;
+        }
+
+        .cert-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 15px 35px rgba(0, 51, 102, 0.15), 0 0 20px rgba(0, 128, 128, 0.15);
+            border-color: rgba(0, 128, 128, 0.4);
+        }
+
+        /* --- CERTIFICATE IMAGE & ANIMATIONS --- */
+        .cert-visual-container {
+            width: 100%; height: 210px; overflow: hidden; position: relative;
+            border-bottom: 1px solid var(--border-color); background: #1a1a1a;
+            display: flex; align-items: center; justify-content: center;
+        }
+
+        .cert-image {
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            object-fit: cover;
+            object-position: center top;
+            z-index: 0;
+            transition: transform 0.5s ease, filter 0.5s ease;
+            filter: brightness(0.65); /* Dimmed to let animations and symbols pop */
+        }
+
+        .cert-card:hover .cert-image {
+            transform: scale(1.05);
+            filter: brightness(0.85);
+        }
+
+        /* Overlay shadow for better contrast */
+        .cert-visual-container::after {
+            content: '';
+            position: absolute;
+            bottom: 0; left: 0; width: 100%; height: 50%;
+            background: linear-gradient(to top, rgba(0,0,0,0.4), transparent);
+            z-index: 1;
+        }
+
+        /* Statistical Bar Chart Animation */
+        .stat-bars {
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            align-items: flex-end;
+            gap: 8px;
+            height: 100%;
+            width: 100%;
+            padding: 0 20px;
+            opacity: 0.35;
+            z-index: 2;
+            pointer-events: none;
+        }
+
+        .stat-bar {
+            flex-grow: 1;
+            background: #ffffff;
+            border-radius: 4px 4px 0 0;
+            animation: fluctuate 3s ease-in-out infinite alternate;
+            box-shadow: 0 0 10px rgba(255,255,255,0.5);
+        }
+
+        .stat-bar:nth-child(1) { height: 20%; animation-delay: 0.0s; }
+        .stat-bar:nth-child(2) { height: 50%; animation-delay: -0.5s; }
+        .stat-bar:nth-child(3) { height: 80%; animation-delay: -1.0s; }
+        .stat-bar:nth-child(4) { height: 40%; animation-delay: -1.5s; }
+        .stat-bar:nth-child(5) { height: 60%; animation-delay: -2.0s; }
+        .stat-bar:nth-child(6) { height: 30%; animation-delay: -2.5s; }
+
+        @keyframes fluctuate {
+            0% { transform: scaleY(0.8); }
+            100% { transform: scaleY(1.2); }
+        }
+
+        /* Floating Math Symbols */
+        .math-symbol {
+            position: absolute;
+            font-family: 'Times New Roman', Times, serif;
+            font-size: 2.5rem;
+            font-weight: bold;
+            color: #ffffff;
+            opacity: 0.4;
+            z-index: 2;
+            text-shadow: 0 0 15px rgba(255,255,255,0.8);
+            animation: floatSymbol 8s ease-in-out infinite;
+            pointer-events: none;
+        }
+
+        .symbol-1 { top: 20px; left: 30px; animation-delay: 0s; }
+        .symbol-2 { bottom: 30px; right: 40px; animation-delay: -2s; font-size: 3.5rem;}
+        .symbol-3 { top: 40px; right: 20px; animation-delay: -4s; }
+
+        @keyframes floatSymbol {
+            0%, 100% { transform: translateY(0) rotate(0deg); }
+            50% { transform: translateY(-15px) rotate(10deg); }
+        }
+
+        /* Content Styling */
+        .cert-content { padding: 25px; flex-grow: 1; display: flex; flex-direction: column;}
+
+        .cert-header {
+            margin-bottom: 15px;
+        }
+
+        .cert-title {
+            margin: 0; font-size: 1.3rem; font-weight: bold; color: var(--text-main);
+            position: relative;
+            display: inline-block;
+            line-height: 1.3;
+        }
+
+        .cert-details {
+            list-style-type: none; padding-left: 0; margin: 0 0 20px 0;
+            flex-grow: 1;
+        }
+
+        .cert-details li {
+            position: relative; margin-bottom: 10px;
+            font-size: 1.05rem; color: var(--text-muted);
+            display: flex; align-items: flex-start; gap: 10px;
+        }
+
+        .cert-details li i {
+            color: var(--accent-color);
+            width: 16px;
+            text-align: center;
+            margin-top: 4px;
+        }
+
+        .shimmer-text {
+            background: linear-gradient(90deg, var(--text-main) 0%, #008080 30%, var(--text-main) 60%);
+            background-size: 200% auto; color: transparent;
+            -webkit-background-clip: text; background-clip: text;
+            animation: dataShimmer 3.5s linear infinite; font-weight: bold;
+        }
+
+        @keyframes dataShimmer { to { background-position: 200% center; } }
+
+        .btn-verify {
+            display: inline-flex; align-items: center; justify-content: center; gap: 8px;
+            padding: 10px 20px; background: rgba(0, 51, 102, 0.05);
+            color: var(--accent-color); font-weight: bold; font-family: 'Times New Roman', Times, serif; font-size: 1rem;
+            border-radius: 6px; border: 1px solid rgba(0, 51, 102, 0.2);
+            transition: var(--transition);
+            margin-top: auto;
+        }
+
+        .btn-verify:hover {
+            background: var(--accent-gradient);
+            color: #ffffff;
+            border-color: transparent;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0, 51, 102, 0.2);
+        }
+
+        /* --- FOOTER --- */
+        footer {
+            border-top: 1px solid var(--border-color); padding: 30px 5%; text-align: center; margin-top: auto; 
+        }
+
+        .copyright-tag { margin: 0; font-size: 0.9rem; color: var(--text-muted); }
+
+        /* --- RESPONSIVE DESIGN --- */
+        @media (max-width: 992px) {
+            .header-container { flex-direction: column; align-items: center; gap: 15px; }
+            .brand-wrapper { flex-direction: column; text-align: center; }
+            .social-links { position: static; }
+            nav { justify-content: center; }
+        }
+
+        @media (max-width: 768px) {
+            .certifications-section { padding: 60px 5%; }
+            .cert-grid { grid-template-columns: 1fr; }
+            nav {
+                flex-wrap: nowrap; overflow-x: auto; width: 100%; justify-content: flex-start;
+                padding-bottom: 5px; -webkit-overflow-scrolling: touch; scrollbar-width: none; 
+            }
+            nav::-webkit-scrollbar { display: none; }
+            nav a { white-space: nowrap; }
+        }
+
+        @media (max-width: 480px) {
+            header { padding: 15px 5%; }
+            .name-heading { font-size: 1.5rem; }
+            .tagline { white-space: normal; border-right: none; font-size: 0.85rem; }
+        }
+    </style>
+</head>
+
+<body>
+
+<header>
+    <div class="header-container">
+        <div class="brand-wrapper">
+            <img src="../images/logo.jpg" alt="AIMatrix Logo" class="logo" onerror="this.style.display='none'">
+            <div class="brand-text">
+                <h1 class="name-heading">Khushi Malik</h1>
+                <p class="tagline">Mathematics Undergraduate • AI/ML Researcher</p>
+            </div>
+        </div>
+        
+        <nav>
+            <a href="../about.html">About</a>
+            <a href="education and experience.html">Education & Experience</a>
+            <a href="projects.html">Projects</a>
+            <a href="research.html">Research</a>
+            <a href="achievements.html">Achievements</a>
+            <a href="engagements.html">Engagements</a>
+            <a href="certifications.html" class="active">Certifications</a>
+            <a href="resume.html">Resume</a>
+            <a href="gallery.html">Gallery</a>
+        </nav>
+        
+        <div class="social-links">
+            <a href="https://www.linkedin.com/in/khushi-6b972b280/" target="_blank" class="social-icon" title="LinkedIn">
+                <i class="fab fa-linkedin-in"></i>
+            </a>
+            <a href="https://github.com/khushimalik3122/" target="_blank" class="social-icon" title="GitHub">
+                <i class="fab fa-github"></i>
+            </a>
+            <a href="mailto:khushimalik511263@gmail.com" class="social-icon" title="Email">
+                <i class="fas fa-envelope"></i>
+            </a>
+        </div>
+    </div>
+</header>
+
+<main>
+    <div class="math-grid"></div>
+
+    <section id="certifications" class="certifications-section">
+        <h2 class="section-title fade-in-element"><i class="fas fa-award"></i> Professional Certifications</h2>
+        
+        <div class="cert-grid">
+            
+            <!-- Certification 1: Excel -->
+            <div class="cert-card fade-in-element">
+                <div class="cert-visual-container">
+                    <!-- Certificate Image (Convert PDF to JPG and put in images folder) -->
+                    <img src="../images/certexcel_page-0001.jpg" alt="Excel Certificate" class="cert-image" onerror="this.src='https://placehold.co/600x400/003366/ffffff?text=Excel+Certificate'">
+                    
+                    <!-- Math Symbols Overlay -->
+                    <span class="math-symbol symbol-1">&Sigma;</span>
+                    <span class="math-symbol symbol-2">&int;</span>
+
+                    <!-- Statistical Animated Bars Overlay -->
+                    <div class="stat-bars">
+                        <div class="stat-bar"></div><div class="stat-bar"></div>
+                        <div class="stat-bar"></div><div class="stat-bar"></div>
+                        <div class="stat-bar"></div><div class="stat-bar"></div>
+                    </div>
+                </div>
+                <div class="cert-content">
+                    <div class="cert-header">
+                        <h3 class="cert-title">Excel: Mother of Business Intelligence</h3>
+                    </div>
+                    <ul class="cert-details">
+                        <li><i class="fas fa-building"></i> <strong>Issuer:</strong> Codebasics (Dhaval Patel)</li>
+                        <li><i class="fas fa-calendar-alt"></i> <strong>Date:</strong> Jul 11, 2024</li>
+                        <li><i class="fas fa-bullseye"></i> <strong>Details:</strong> Mastered Excel by practicing real-time business requirements using a dataset with >1M records. Passed final exam with >70%.</li>
+                    </ul>
+                    <a href="https://codebasics.io/certificate/CB-51-326117" target="_blank" class="btn-verify">
+                        Verify Credential <i class="fas fa-external-link-alt"></i>
+                    </a>
+                </div>
+            </div>
+
+            <!-- Certification 2: SQL -->
+            <div class="cert-card fade-in-element">
+                <div class="cert-visual-container">
+                    <!-- Certificate Image (Convert PDF to JPG and put in images folder) -->
+                    <img src="../images/certsql_page-0001.jpg" alt="SQL Certificate" class="cert-image" onerror="this.src='https://placehold.co/600x400/003366/ffffff?text=SQL+Certificate'">
+                    
+                    <!-- Math Symbols Overlay -->
+                    <span class="math-symbol symbol-1">&pi;</span>
+                    <span class="math-symbol symbol-2">&mu;</span>
+
+                    <!-- Statistical Animated Bars Overlay -->
+                    <div class="stat-bars">
+                        <div class="stat-bar"></div><div class="stat-bar"></div>
+                        <div class="stat-bar"></div><div class="stat-bar"></div>
+                        <div class="stat-bar"></div><div class="stat-bar"></div>
+                    </div>
+                </div>
+                <div class="cert-content">
+                    <div class="cert-header">
+                        <h3 class="cert-title">SQL Beginner to Advanced For Data Professionals</h3>
+                    </div>
+                    <ul class="cert-details">
+                        <li><i class="fas fa-building"></i> <strong>Issuer:</strong> Codebasics (Dhaval Patel)</li>
+                        <li><i class="fas fa-calendar-alt"></i> <strong>Date:</strong> Jan 08, 2025</li>
+                        <li><i class="fas fa-bullseye"></i> <strong>Details:</strong> Worked on real-time business analytics requirements from a dataset with >1.5M records. Passed final exam with >70%.</li>
+                    </ul>
+                    <a href="https://codebasics.io/certificate/CB-50-326117" target="_blank" class="btn-verify">
+                        Verify Credential <i class="fas fa-external-link-alt"></i>
+                    </a>
+                </div>
+            </div>
+
+            <!-- Certification 3: Python -->
+            <div class="cert-card fade-in-element">
+                <div class="cert-visual-container">
+                    <!-- Certificate Image (Convert PDF to JPG and put in images folder) -->
+                    <img src="../images/certpython_page-0001.jpg" alt="Python Certificate" class="cert-image" onerror="this.src='https://placehold.co/600x400/003366/ffffff?text=Python+Certificate'">
+
+                    <!-- Math Symbols Overlay -->
+                    <span class="math-symbol symbol-1">&Delta;</span>
+                    <span class="math-symbol symbol-2">&theta;</span>
+                    <span class="math-symbol symbol-3">&sigma;</span>
+
+                    <!-- Statistical Animated Bars Overlay -->
+                    <div class="stat-bars">
+                        <div class="stat-bar"></div><div class="stat-bar"></div>
+                        <div class="stat-bar"></div><div class="stat-bar"></div>
+                        <div class="stat-bar"></div><div class="stat-bar"></div>
+                    </div>
+                </div>
+                <div class="cert-content">
+                    <div class="cert-header">
+                        <h3 class="cert-title">Python: Beginner to Advanced For Data Professionals</h3>
+                    </div>
+                    <ul class="cert-details">
+                        <li><i class="fas fa-building"></i> <strong>Issuer:</strong> Codebasics (Dhaval Patel)</li>
+                        <li><i class="fas fa-calendar-alt"></i> <strong>Date:</strong> Apr 21, 2025</li>
+                        <li><i class="fas fa-bullseye"></i> <strong>Details:</strong> Built projects in Hospitality Data Analytics & Expense Tracking. Mastered Pandas, FastAPI backend, and Streamlit frontend.</li>
+                    </ul>
+                    <a href="https://codebasics.io/certificate/CB-48-326117" target="_blank" class="btn-verify">
+                        Verify Credential <i class="fas fa-external-link-alt"></i>
+                    </a>
+                </div>
+            </div>
+
+        </div>
+    </section>
+</main>
+
+<footer>
+    <p class="copyright-tag">© 2026 Khushi Malik • Built with Precision</p>
+</footer>
+
+<script>
+    document.addEventListener("DOMContentLoaded", () => {
+        const observerOptions = { root: null, rootMargin: '0px', threshold: 0.15 };
+
+        const scrollObserver = new IntersectionObserver((entries, observer) => {
+            entries.forEach((entry, index) => {
+                if (entry.isIntersecting) {
+                    setTimeout(() => {
+                        entry.target.classList.add('is-visible');
+                    }, index * 100);
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, observerOptions);
+
+        const animatedElements = document.querySelectorAll('.fade-in-element');
+        animatedElements.forEach(el => scrollObserver.observe(el));
+    });
+</script>
+
+</body>
+</html>

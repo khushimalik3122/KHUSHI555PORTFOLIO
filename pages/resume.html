@@ -1,0 +1,401 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Khushi Malik | Resume</title>
+    <!-- Note the ../ to go up one folder to images -->
+    <link rel="icon" type="image/jpeg" href="../images/logo.jpg">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="../css/style.css">
+
+    <style>
+        /* --- PROFESSIONAL RESET & VARIABLES --- */
+        :root {
+            --bg-color: #ffffff;
+            --text-main: #1a1a1a;
+            --text-muted: #4a4a4a;
+            --accent-color: #003366; 
+            --accent-gradient: linear-gradient(135deg, #003366, #008080);
+            --border-color: #e5e5e5;
+            --transition: all 0.3s ease-in-out;
+        }
+
+        html { scroll-behavior: smooth; }
+
+        body {
+            font-family: 'Times New Roman', Times, serif;
+            margin: 0; padding: 0;
+            color: var(--text-main);
+            background: linear-gradient(-45deg, #ffffff, #f4f7f9, #eaeff5, #ffffff);
+            background-size: 400% 400%;
+            animation: subtleBackground 15s ease infinite;
+            line-height: 1.6;
+            overflow-x: hidden;
+            display: flex; flex-direction: column; min-height: 100vh;
+        }
+
+        @keyframes subtleBackground {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        a { text-decoration: none; color: var(--accent-color); transition: var(--transition); }
+
+        /* --- HEADER & BRANDING --- */
+        header {
+            background-color: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid var(--border-color);
+            padding: 20px 5%;
+            position: sticky; top: 0; z-index: 1000;
+        }
+
+        .header-container {
+            max-width: 1200px; margin: 0 auto;
+            display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 20px;
+        }
+
+        .brand-wrapper { display: flex; align-items: center; gap: 15px; }
+
+        .logo {
+            height: 65px; width: auto; object-fit: cover;
+            clip-path: inset(4% round 14px); 
+            transition: transform 0.3s ease, filter 0.3s ease;
+        }
+
+        .logo:hover { transform: scale(1.05); filter: brightness(1.15); }
+
+        .brand-text { display: flex; flex-direction: column; overflow: hidden; }
+
+        .name-heading {
+            margin: 0; font-size: 1.75rem; font-weight: bold;
+            background: var(--accent-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            letter-spacing: 0.5px;
+        }
+
+        .tagline {
+            margin: 0; font-size: 0.95rem; font-style: italic; color: var(--text-muted);
+        }
+
+        /* --- NAVIGATION --- */
+        nav { display: flex; flex-wrap: wrap; gap: 15px; align-items: center; }
+
+        nav a {
+            color: var(--text-muted); font-size: 0.95rem; padding: 5px 0; position: relative;
+        }
+
+        nav a:hover, nav a.active { color: var(--accent-color); }
+
+        nav a::after {
+            content: ''; position: absolute; width: 0; height: 1px; bottom: 0; left: 0;
+            background-color: var(--accent-color); transition: width 0.3s ease;
+        }
+
+        nav a:hover::after, nav a.active::after { width: 100%; }
+
+        .social-links { display: flex; gap: 15px; }
+        .social-icon { color: var(--text-muted); font-size: 1.2rem; }
+        .social-icon:hover { color: var(--accent-color); transform: translateY(-2px); }
+
+        /* --- RESUME SECTION STYLES --- */
+        main { flex-grow: 1; }
+
+        .resume-section {
+            padding: 60px 5%; max-width: 900px; margin: 0 auto; position: relative; z-index: 1;
+        }
+
+        .section-title {
+            font-size: 2rem; color: var(--accent-color);
+            border-bottom: 2px solid var(--border-color);
+            padding-bottom: 10px; margin-bottom: 30px; font-weight: normal;
+            display: flex; align-items: center; gap: 12px;
+        }
+
+        /* Download Button */
+        .download-container {
+            text-align: center; margin-bottom: 40px;
+        }
+
+        .btn-download {
+            display: inline-flex; align-items: center; gap: 10px;
+            padding: 12px 28px; background: var(--accent-gradient);
+            color: #ffffff; font-weight: bold; font-family: 'Times New Roman', Times, serif; font-size: 1.1rem;
+            border-radius: 30px; transition: var(--transition);
+            box-shadow: 0 5px 15px rgba(0, 51, 102, 0.2);
+            opacity: 0; transform: translateY(15px);
+            animation: fadeUp 0.6s ease-out forwards;
+        }
+
+        .btn-download:hover {
+            transform: translateY(-4px); box-shadow: 0 10px 25px rgba(0, 128, 128, 0.35); color: #ffffff;
+        }
+
+        /* Digital Paper */
+        .resume-paper {
+            background: #ffffff;
+            padding: 50px 60px;
+            border-radius: 8px;
+            box-shadow: 0 15px 40px rgba(0, 51, 102, 0.08), 0 0 0 1px rgba(0,0,0,0.03);
+            opacity: 0; transform: translateY(20px);
+            animation: fadeUp 0.8s ease-out 0.2s forwards;
+        }
+
+        @keyframes fadeUp { to { opacity: 1; transform: translateY(0); } }
+
+        .resume-header { text-align: center; border-bottom: 2px solid var(--accent-color); padding-bottom: 20px; margin-bottom: 30px; }
+        .resume-name { font-size: 2.2rem; margin: 0 0 5px 0; color: var(--text-main); font-weight: bold; }
+        .resume-contact { font-size: 1rem; color: var(--text-muted); margin: 0; }
+        .resume-contact a { color: var(--text-muted); margin: 0 8px; transition: color 0.2s; }
+        .resume-contact a:hover { color: var(--accent-color); }
+
+        .resume-category {
+            font-size: 1.3rem; color: var(--accent-color); border-bottom: 1px solid var(--border-color);
+            padding-bottom: 5px; margin: 30px 0 15px 0; font-weight: bold; text-transform: uppercase; letter-spacing: 1px;
+        }
+
+        .resume-item { margin-bottom: 20px; }
+        .resume-item-header { display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 5px; flex-wrap: wrap; }
+        .resume-item-title { font-size: 1.15rem; font-weight: bold; color: var(--text-main); margin: 0; }
+        .resume-item-date { font-size: 0.95rem; color: var(--text-muted); font-style: italic; white-space: nowrap; }
+        .resume-item-subtitle { font-size: 1.05rem; font-style: italic; color: var(--text-main); margin: 0 0 8px 0; }
+        
+        .resume-bullets { list-style-type: disc; padding-left: 20px; margin: 0; }
+        .resume-bullets li {
+            margin-bottom: 8px; font-size: 1.05rem; color: var(--text-muted); text-align: justify;
+            transition: transform 0.3s ease, color 0.3s ease;
+        }
+        .resume-bullets li:hover { transform: translateX(4px); color: var(--text-main); }
+
+        .shimmer-text {
+            background: linear-gradient(90deg, var(--text-main) 0%, #008080 30%, var(--text-main) 60%);
+            background-size: 200% auto; color: transparent;
+            -webkit-background-clip: text; background-clip: text;
+            animation: dataShimmer 3.5s linear infinite; font-weight: bold;
+        }
+
+        @keyframes dataShimmer { to { background-position: 200% center; } }
+
+        .skills-grid {
+            display: grid; grid-template-columns: 1fr; gap: 10px; margin-top: 10px;
+        }
+        .skills-category strong { color: var(--text-main); }
+        .skills-category { font-size: 1.05rem; color: var(--text-muted); }
+
+        /* --- FOOTER --- */
+        footer {
+            border-top: 1px solid var(--border-color); padding: 30px 5%; text-align: center; margin-top: auto; 
+        }
+
+        .copyright-tag { margin: 0; font-size: 0.9rem; color: var(--text-muted); }
+
+        /* --- RESPONSIVE DESIGN --- */
+        @media (max-width: 992px) {
+            .header-container { flex-direction: column; align-items: center; gap: 15px; }
+            .brand-wrapper { flex-direction: column; text-align: center; }
+            .social-links { position: static; }
+            nav { justify-content: center; }
+        }
+
+        @media (max-width: 768px) {
+            .resume-paper { padding: 30px 20px; }
+            .resume-item-header { flex-direction: column; }
+            .resume-item-date { margin-top: 2px; }
+            nav {
+                flex-wrap: nowrap; overflow-x: auto; width: 100%; justify-content: flex-start;
+                padding-bottom: 5px; -webkit-overflow-scrolling: touch; scrollbar-width: none; 
+            }
+            nav::-webkit-scrollbar { display: none; }
+            nav a { white-space: nowrap; }
+        }
+
+        @media (max-width: 480px) {
+            header { padding: 15px 5%; }
+            .name-heading { font-size: 1.5rem; }
+            .tagline { white-space: normal; border-right: none; font-size: 0.85rem; }
+            .resume-name { font-size: 1.8rem; }
+        }
+    </style>
+</head>
+
+<body>
+
+<header>
+    <div class="header-container">
+        <div class="brand-wrapper">
+            <img src="../images/logo.jpg" alt="AIMatrix Logo" class="logo" onerror="this.style.display='none'">
+            <div class="brand-text">
+                <h1 class="name-heading">Khushi Malik</h1>
+                <p class="tagline">Mathematics Undergraduate • AI/ML Researcher</p>
+            </div>
+        </div>
+        
+        <nav>
+            <a href="../about.html">About</a>
+            <a href="education and experience.html">Education & Experience</a>
+            <a href="projects.html">Projects</a>
+            <a href="research.html">Research</a>
+            <a href="achievements.html">Achievements</a>
+            <a href="engagements.html">Engagements</a>
+            <a href="certifications.html">Certifications</a>
+            <a href="resume.html" class="active">Resume</a>
+            <a href="gallery.html">Gallery</a>
+        </nav>
+        
+        <div class="social-links">
+            <a href="https://www.linkedin.com/in/khushi-6b972b280/" target="_blank" class="social-icon" title="LinkedIn">
+                <i class="fab fa-linkedin-in"></i>
+            </a>
+            <a href="https://github.com/khushimalik3122/" target="_blank" class="social-icon" title="GitHub">
+                <i class="fab fa-github"></i>
+            </a>
+            <a href="mailto:khushimalik511263@gmail.com" class="social-icon" title="Email">
+                <i class="fas fa-envelope"></i>
+            </a>
+        </div>
+    </div>
+</header>
+
+<main>
+    <section class="resume-section">
+        <h2 class="section-title"><i class="fas fa-file-alt"></i> Interactive Resume</h2>
+        
+        <div class="download-container">
+            <!-- Ensure your PDF is named exactly 'Khushi_Malik_Resume.pdf' and is in the root folder -->
+            <a href="../documents/Khushi_Malik_Resume.pdf" download="Khushi_Malik_Resume.pdf" target="_blank" class="btn-download">
+                <i class="fas fa-download"></i> Download Full PDF
+            </a>
+        </div>
+
+        <div class="resume-paper">
+            <div class="resume-header">
+                <h1 class="resume-name">Khushi Malik</h1>
+                <p class="resume-contact">
+                    <i class="fas fa-phone-alt"></i> +91-9536110472 &nbsp;|&nbsp; 
+                    <i class="fas fa-envelope"></i> khushimalik511263@gmail.com
+                </p>
+                <p class="resume-contact" style="margin-top: 5px;">
+                    <a href="https://www.linkedin.com/in/khushi-6b972b280/" target="_blank"><i class="fab fa-linkedin"></i> LinkedIn</a> |
+                    <a href="https://github.com/khushimalik3122/" target="_blank"><i class="fab fa-github"></i> GitHub</a> |
+                    <a href="../about.html"><i class="fas fa-globe"></i> Portfolio</a>
+                </p>
+            </div>
+
+            <!-- EDUCATION -->
+            <div class="resume-category">Education</div>
+            <div class="resume-item">
+                <div class="resume-item-header">
+                    <p class="resume-item-title">Kirori Mal College, University of Delhi</p>
+                    <p class="resume-item-date">Delhi, India | Aug 2023 – May 2026</p>
+                </div>
+                <p class="resume-item-subtitle">Bachelor of Science in Mathematics</p>
+                <p style="margin: 0; font-size: 1.05rem; color: var(--text-muted);"><strong>CGPA:</strong> 8.27/10.0</p>
+            </div>
+
+            <!-- WORK EXPERIENCE -->
+            <div class="resume-category">Work Experience</div>
+            <div class="resume-item">
+                <div class="resume-item-header">
+                    <p class="resume-item-title">Planto AI</p>
+                    <p class="resume-item-date">Remote, New Delhi | Aug 2025 – Nov 2025</p>
+                </div>
+                <p class="resume-item-subtitle">Lead AI Researcher</p>
+                <ul class="resume-bullets">
+                    <li>Spearheaded optimization of <strong class="shimmer-text">Retrieval-Augmented Generation (RAG)</strong> pipelines, achieving an 18% increase in LLM accuracy and a 25% reduction in latency through advanced re-ranking and semantic chunking strategies.</li>
+                    <li>Led a cross-functional team of 5 engineers to ship an AI-powered VS Code extension utilizing multi-agent workflows, driving a 30% boost in developer productivity.</li>
+                    <li>Engineered cost-efficient model fine-tuning workflows using Hugging Face Transformers and <strong class="shimmer-text">PEFT (LoRA)</strong>, reducing cloud infrastructure costs by 40%.</li>
+                    <li>Collaborated with executive stakeholders to define AI strategy and presented data-driven insights that accelerated adoption of AI initiatives by 15%.</li>
+                </ul>
+            </div>
+
+            <div class="resume-item">
+                <div class="resume-item-header">
+                    <p class="resume-item-title">Planto AI</p>
+                    <p class="resume-item-date">Remote, New Delhi | May 2025 – July 2025</p>
+                </div>
+                <p class="resume-item-subtitle">AI Researcher</p>
+                <ul class="resume-bullets">
+                    <li>Optimized <strong class="shimmer-text">LLM inference</strong> by implementing tokenization improvements and prompt compression, increasing speed by 20% and response relevance by 15%.</li>
+                    <li>Architected scalable end-to-end ML pipelines using Python and Hugging Face, enabling production rollout within 4 weeks handling 10k+ daily queries.</li>
+                    <li>Designed and deployed enterprise-grade RAG systems for efficient retrieval across organizational datasets.</li>
+                </ul>
+            </div>
+
+            <!-- FREELANCE PROJECTS -->
+            <div class="resume-category">Freelance Projects</div>
+            <div class="resume-item">
+                <div class="resume-item-header">
+                    <p class="resume-item-title">UNIDO AfricaRice Edge AI Mobile App</p>
+                </div>
+                <p class="resume-item-subtitle">Flutter, Dart, TensorFlow Lite, ONNX, PyTorch</p>
+                <ul class="resume-bullets">
+                    <li>Built a 100% offline Flutter-based mobile AI system to classify rice quality on low-end Android devices by optimizing a ConvNext Vision Transformer via ONNX graph surgery and FP16 quantization, reducing model memory footprint by 50% and tile input size by 75%.</li>
+                    <li>Prevented OOM crashes on MediaTek Helio CPUs using Dart background isolates and ARM big.LITTLE core tuning, enabling real-time predictions from 12MP images without UI lag on 6GB RAM devices.</li>
+                </ul>
+            </div>
+
+            <div class="resume-item">
+                <div class="resume-item-header">
+                    <p class="resume-item-title">Amini GeoFM - Decoding the Field Challenge</p>
+                </div>
+                <p class="resume-item-subtitle">Python, PyTorch, Google Earth Engine</p>
+                <ul class="resume-bullets">
+                    <li>Built a hybrid satellite time-series classification system to predict crop types from Sentinel-2 imagery by optimizing seasonal pattern learning using PatchTST transformer embeddings fused with vegetation indices (NDVI, NDRE, SAVI).</li>
+                    <li>Achieved robust classification of irregular multivariate field data using a soft-voting ensemble of Random Forest, SVM, and Logistic Regression, achieving 0.7473 Macro F1.</li>
+                </ul>
+            </div>
+
+            <!-- PROJECTS -->
+            <div class="resume-category">Projects</div>
+            <div class="resume-item">
+                <div class="resume-item-header">
+                    <p class="resume-item-title">AI Finance News System</p>
+                </div>
+                <p class="resume-item-subtitle">LangGraph, RAG Pipelines, Python, SQL</p>
+                <ul class="resume-bullets">
+                    <li>Built a multi-agent financial news system to reduce information overload through redundancy removal and actionable insight extraction.</li>
+                    <li>Delivered context-aware Q&A for traders and managed end-to-end development from problem definition to ML optimization.</li>
+                </ul>
+            </div>
+
+            <div class="resume-item">
+                <div class="resume-item-header">
+                    <p class="resume-item-title">AI Medical Assistance System</p>
+                </div>
+                <p class="resume-item-subtitle">LLMs, LoRA/PEFT, Hugging Face, Python</p>
+                <ul class="resume-bullets">
+                    <li>Fine-tuned a medical LLM on clinical reasoning datasets to generate accurate and explainable responses using <strong class="shimmer-text">Chain-of-Thought prompting</strong>.</li>
+                    <li>Integrated real-time LLM inference into a Python backend for clinical question answering.</li>
+                </ul>
+            </div>
+
+            <!-- ACHIEVEMENTS & CERTIFICATIONS -->
+            <div class="resume-category">Achievements & Certifications</div>
+            <ul class="resume-bullets" style="margin-bottom: 20px;">
+                <li><strong>Zindi Competition:</strong> Global Rank 120 as a Data Scientist among 100k Data Scientists, awarded prize money of USD 2000 across Data Science Competitions.</li>
+                <li>Received Letter of Recommendation from Coding Jr.</li>
+                <li><strong>Certifications:</strong> Excel Business Intelligence, SQL Beginner to Advanced, Python Beginner to Advanced.</li>
+            </ul>
+
+            <!-- TECHNICAL SKILLS -->
+            <div class="resume-category">Technical Skills</div>
+            <div class="skills-grid">
+                <div class="skills-category"><strong>Languages & Frameworks:</strong> Python, SQL, TypeScript, FastAPI, PyTorch, Hugging Face</div>
+                <div class="skills-category"><strong>AI/ML & GenAI:</strong> RAG, PEFT/LoRA, NLP, LLMs, Transformers</div>
+                <div class="skills-category"><strong>Cloud & DevOps:</strong> Docker, Git/GitLab, Weights & Biases</div>
+                <div class="skills-category"><strong>Databases:</strong> Pinecone (Vector DB), PostgresSQL</div>
+            </div>
+
+        </div>
+    </section>
+</main>
+
+<footer>
+    <p class="copyright-tag">© 2026 Khushi Malik • Built with Precision</p>
+</footer>
+
+</body>
+</html>

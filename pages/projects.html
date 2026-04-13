@@ -1,0 +1,400 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Khushi Malik | Projects</title>
+    <link rel="icon" type="image/jpeg" href="../images/logo.jpg">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <style>
+        /* --- PROFESSIONAL RESET & VARIABLES --- */
+        :root {
+            --bg-color: #ffffff;
+            --text-main: #1a1a1a;
+            --text-muted: #4a4a4a;
+            --accent-color: #003366; 
+            --accent-gradient: linear-gradient(135deg, #003366, #008080);
+            --border-color: #e5e5e5;
+            --transition: all 0.3s ease-in-out;
+        }
+
+        html { scroll-behavior: smooth; }
+
+        body {
+            font-family: 'Times New Roman', Times, serif;
+            margin: 0; padding: 0;
+            color: var(--text-main);
+            background: linear-gradient(-45deg, #ffffff, #f4f7f9, #eaeff5, #ffffff);
+            background-size: 400% 400%;
+            animation: subtleBackground 15s ease infinite;
+            line-height: 1.6;
+            overflow-x: hidden;
+            display: flex; flex-direction: column; min-height: 100vh;
+        }
+
+        @keyframes subtleBackground {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        /* --- GLOBAL ANIMATED MATH GRID --- */
+        .math-grid {
+            position: fixed; 
+            top: 0; left: 0; right: 0; bottom: 0;
+            background-image: 
+                linear-gradient(rgba(0, 51, 102, 0.04) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(0, 51, 102, 0.04) 1px, transparent 1px);
+            background-size: 40px 40px;
+            z-index: -1;
+            mask-image: radial-gradient(ellipse at center, black 40%, transparent 80%);
+            -webkit-mask-image: radial-gradient(ellipse at center, black 40%, transparent 80%);
+            animation: panGrid 20s linear infinite;
+        }
+
+        @keyframes panGrid {
+            from { background-position: 0 0; }
+            to { background-position: 40px 40px; }
+        }
+
+        /* --- SCROLL ANIMATION CLASSES --- */
+        .fade-in-element {
+            opacity: 0;
+            transform: translateY(25px);
+            transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+            will-change: opacity, transform;
+        }
+        .fade-in-element.is-visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        a { text-decoration: none; color: var(--accent-color); transition: var(--transition); }
+
+        /* --- HEADER & BRANDING --- */
+        header {
+            background-color: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid var(--border-color);
+            padding: 20px 5%;
+            position: sticky; top: 0; z-index: 1000;
+        }
+
+        .header-container {
+            max-width: 1200px; margin: 0 auto;
+            display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 20px;
+        }
+
+        .brand-wrapper { display: flex; align-items: center; gap: 15px; }
+
+        .logo {
+            height: 65px; width: auto; object-fit: cover;
+            clip-path: inset(4% round 14px); 
+            transition: transform 0.3s ease, filter 0.3s ease;
+        }
+
+        .logo:hover { transform: scale(1.05); filter: brightness(1.15); }
+
+        .brand-text { display: flex; flex-direction: column; overflow: hidden; }
+
+        .name-heading {
+            margin: 0; font-size: 1.75rem; font-weight: bold;
+            background: var(--accent-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            letter-spacing: 0.5px;
+        }
+
+        .tagline {
+            margin: 0; font-size: 0.95rem; font-style: italic; color: var(--text-muted);
+            display: inline-block; white-space: nowrap; overflow: hidden;
+            border-right: 2px solid var(--accent-color);
+            animation: typingCode 3.5s steps(45, end), blinkCursor .75s step-end infinite;
+        }
+
+        @keyframes typingCode { from { width: 0; } to { width: 100%; } }
+        @keyframes blinkCursor { from, to { border-color: transparent; } 50% { border-color: var(--accent-color); } }
+
+        /* --- NAVIGATION --- */
+        nav { display: flex; flex-wrap: wrap; gap: 15px; align-items: center; }
+
+        nav a {
+            color: var(--text-muted); font-size: 0.95rem; padding: 5px 0; position: relative;
+        }
+
+        nav a:hover, nav a.active { color: var(--accent-color); }
+
+        nav a::after {
+            content: ''; position: absolute; width: 0; height: 1px; bottom: 0; left: 0;
+            background-color: var(--accent-color); transition: width 0.3s ease;
+        }
+
+        nav a:hover::after, nav a.active::after { width: 100%; }
+
+        .social-links { display: flex; gap: 15px; }
+        .social-icon { color: var(--text-muted); font-size: 1.2rem; }
+        .social-icon:hover { color: var(--accent-color); transform: translateY(-2px); }
+
+        /* --- PROJECTS SECTION STYLES --- */
+        main { flex-grow: 1; }
+
+        .projects-section {
+            padding: 80px 5%; max-width: 1000px; margin: 0 auto; position: relative; z-index: 1;
+        }
+
+        .section-title {
+            font-size: 2rem; color: var(--accent-color);
+            border-bottom: 2px solid var(--border-color);
+            padding-bottom: 10px; margin-bottom: 40px; font-weight: normal;
+            display: flex; align-items: center; gap: 12px;
+        }
+
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 35px; margin-top: 20px;
+        }
+
+        .project-card {
+            background: rgba(255, 255, 255, 0.85); backdrop-filter: blur(8px);
+            border: 1px solid var(--border-color); border-radius: 12px; overflow: hidden;
+            transition: var(--transition);
+        }
+
+        .project-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 15px 35px rgba(0, 51, 102, 0.15), 0 0 20px rgba(0, 128, 128, 0.15);
+            border-color: rgba(0, 128, 128, 0.4);
+        }
+
+        .project-image-container {
+            width: 100%; height: 220px; overflow: hidden; position: relative;
+            border-bottom: 1px solid var(--border-color); background: #f4f7f9;
+            display: flex; align-items: center; justify-content: center;
+        }
+
+        .project-image {
+            width: 100%; height: 100%; object-fit: cover;
+            transition: transform 0.5s ease; position: relative; z-index: 2;
+        }
+
+        .project-card:hover .project-image { transform: scale(1.05); }
+        
+        .project-image-placeholder-icon {
+            font-size: 3rem; color: var(--accent-color); opacity: 0.15; position: absolute; z-index: 1;
+            animation: pulseIcon 3s ease-in-out infinite;
+        }
+
+        @keyframes pulseIcon {
+            0% { transform: scale(1); opacity: 0.15; }
+            50% { transform: scale(1.1); opacity: 0.25; }
+            100% { transform: scale(1); opacity: 0.15; }
+        }
+
+        .project-content { padding: 25px; }
+
+        .project-header {
+            display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 5px;
+        }
+
+        .project-title {
+            margin: 0; font-size: 1.4rem; font-weight: bold; color: var(--text-main);
+            position: relative;
+            display: inline-block;
+        }
+
+        .project-title::after {
+            content: ''; position: absolute; width: 0; height: 2px; bottom: -2px; left: 0;
+            background: var(--accent-gradient); transition: width 0.4s ease;
+        }
+
+        .project-card:hover .project-title::after {
+            width: 100%;
+        }
+
+        .project-link {
+            color: var(--text-muted); font-size: 1.4rem; transition: var(--transition); padding: 5px;
+        }
+
+        .project-link:hover { color: var(--accent-color); transform: scale(1.1); }
+
+        .project-tech {
+            font-size: 0.95rem; font-style: italic; color: var(--accent-color); margin-bottom: 18px; display: block;
+        }
+
+        .project-details { list-style-type: none; padding-left: 0; margin: 0; }
+        .project-details li {
+            position: relative; padding-left: 22px; margin-bottom: 12px;
+            font-size: 1.05rem; color: var(--text-muted); text-align: justify;
+            transition: transform 0.3s ease, color 0.3s ease;
+        }
+
+        .project-details li:hover {
+            transform: translateX(6px);
+            color: var(--text-main);
+        }
+
+        .project-details li::before {
+            content: '▹'; position: absolute; left: 0; top: 0;
+            color: var(--accent-color); font-size: 1.2rem; font-weight: bold;
+        }
+
+        .shimmer-text {
+            background: linear-gradient(90deg, var(--text-main) 0%, #008080 30%, var(--text-main) 60%);
+            background-size: 200% auto; color: transparent;
+            -webkit-background-clip: text; background-clip: text;
+            animation: dataShimmer 3.5s linear infinite; font-weight: bold;
+        }
+
+        @keyframes dataShimmer { to { background-position: 200% center; } }
+
+        /* --- FOOTER --- */
+        footer {
+            border-top: 1px solid var(--border-color); padding: 30px 5%; text-align: center; margin-top: auto; 
+        }
+
+        .copyright-tag { margin: 0; font-size: 0.9rem; color: var(--text-muted); }
+
+        /* --- RESPONSIVE DESIGN --- */
+        @media (max-width: 992px) {
+            .header-container { flex-direction: column; align-items: center; gap: 15px; }
+            .brand-wrapper { flex-direction: column; text-align: center; }
+            .social-links { position: static; }
+            nav { justify-content: center; }
+        }
+
+        @media (max-width: 768px) {
+            .projects-section { padding: 60px 5%; }
+            .projects-grid { grid-template-columns: 1fr; }
+            nav {
+                flex-wrap: nowrap; overflow-x: auto; width: 100%; justify-content: flex-start;
+                padding-bottom: 5px; -webkit-overflow-scrolling: touch; scrollbar-width: none; 
+            }
+            nav::-webkit-scrollbar { display: none; }
+            nav a { white-space: nowrap; }
+        }
+
+        @media (max-width: 480px) {
+            header { padding: 15px 5%; }
+            .name-heading { font-size: 1.5rem; }
+            .tagline { white-space: normal; border-right: none; font-size: 0.85rem; }
+            .project-image-container { height: 180px; }
+        }
+    </style>
+</head>
+
+<body>
+
+<header>
+    <div class="header-container">
+        <div class="brand-wrapper">
+            <img src="../images/logo.jpg" alt="AIMatrix Logo" class="logo" onerror="this.style.display='none'">
+            <div class="brand-text">
+                <h1 class="name-heading">Khushi Malik</h1>
+                <p class="tagline">Mathematics Undergraduate • AI/ML Researcher</p>
+            </div>
+        </div>
+        
+        <nav>
+            <a href="../about.html">About</a>
+            <a href="education and experience.html">Education & Experience</a>
+            <a href="projects.html" class="active">Projects</a>
+            <a href="research.html">Research</a>
+            <a href="achievements.html">Achievements</a>
+            <a href="engagements.html">Engagements</a>
+            <a href="certifications.html">Certifications</a>
+            <a href="resume.html">Resume</a>
+            <a href="gallery.html">Gallery</a>
+        </nav>
+        
+        <div class="social-links">
+            <a href="https://www.linkedin.com/in/khushi-6b972b280/" target="_blank" class="social-icon" title="LinkedIn">
+                <i class="fab fa-linkedin-in"></i>
+            </a>
+            <a href="https://github.com/khushimalik3122/" target="_blank" class="social-icon" title="GitHub">
+                <i class="fab fa-github"></i>
+            </a>
+            <a href="mailto:khushimalik511263@gmail.com" class="social-icon" title="Email">
+                <i class="fas fa-envelope"></i>
+            </a>
+        </div>
+    </div>
+</header>
+
+<main>
+    <div class="math-grid"></div>
+
+    <section id="projects" class="projects-section">
+        <h2 class="section-title fade-in-element"><i class="fas fa-code"></i> Projects</h2>
+        
+        <div class="projects-grid">
+            
+            <!-- Project 1 -->
+            <div class="project-card fade-in-element">
+                <div class="project-image-container">
+                    <i class="fas fa-chart-line project-image-placeholder-icon"></i>
+                    <img src="../images/finance-project.jpg" alt="AI Finance News System" class="project-image" onerror="this.style.display='none'">
+                </div>
+                <div class="project-content">
+                    <div class="project-header">
+                        <h3 class="project-title">AI Finance News System</h3>
+                        <a href="https://github.com/khushimalik3122/AI_Finace_news_System55" target="_blank" class="project-link" title="View on GitHub"><i class="fab fa-github"></i></a>
+                    </div>
+                    <span class="project-tech">LangGraph, RAG Pipelines, Python, SQL</span>
+                    <ul class="project-details">
+                        <li>Built a <strong class="shimmer-text">multi-agent financial news system</strong> to reduce information overload through redundancy removal and <strong>actionable insight extraction</strong>.</li>
+                        <li>Delivered context-aware Q&A for traders and managed end-to-end development from problem definition to ML optimization.</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Project 2 -->
+            <div class="project-card fade-in-element">
+                <div class="project-image-container">
+                    <i class="fas fa-laptop-medical project-image-placeholder-icon"></i>
+                    <img src="../images/medical-project.jpg" alt="AI Medical Assistance System" class="project-image" onerror="this.style.display='none'">
+                </div>
+                <div class="project-content">
+                    <div class="project-header">
+                        <h3 class="project-title">AI Medical Assistance System</h3>
+                        <a href="https://github.com/khushimalik3122/Medical-AI-Assistance" target="_blank" class="project-link" title="View on GitHub"><i class="fab fa-github"></i></a>
+                    </div>
+                    <span class="project-tech">LLMs, LoRA/PEFT, Hugging Face, Python</span>
+                    <ul class="project-details">
+                        <li>Fine-tuned a <strong>medical LLM</strong> on clinical reasoning datasets to generate accurate and explainable responses using <strong class="shimmer-text">Chain-of-Thought prompting</strong>.</li>
+                        <li>Integrated <strong class="shimmer-text">real-time LLM inference</strong> into a Python backend for clinical question answering.</li>
+                    </ul>
+                </div>
+            </div>
+
+        </div>
+    </section>
+</main>
+
+<footer>
+    <p class="copyright-tag">© 2026 Khushi Malik • Built with Precision</p>
+</footer>
+
+<script>
+    document.addEventListener("DOMContentLoaded", () => {
+        const observerOptions = { root: null, rootMargin: '0px', threshold: 0.15 };
+
+        const scrollObserver = new IntersectionObserver((entries, observer) => {
+            entries.forEach((entry, index) => {
+                if (entry.isIntersecting) {
+                    setTimeout(() => {
+                        entry.target.classList.add('is-visible');
+                    }, index * 100);
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, observerOptions);
+
+        const animatedElements = document.querySelectorAll('.fade-in-element');
+        animatedElements.forEach(el => scrollObserver.observe(el));
+    });
+</script>
+
+</body>
+</html>

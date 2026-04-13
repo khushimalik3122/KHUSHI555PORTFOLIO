@@ -1,0 +1,448 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Khushi Malik | Research</title>
+    <link rel="icon" type="image/jpeg" href="../images/logo.jpg">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <style>
+        /* --- PROFESSIONAL RESET & VARIABLES --- */
+        :root {
+            --bg-color: #ffffff;
+            --text-main: #1a1a1a;
+            --text-muted: #4a4a4a;
+            --accent-color: #003366; 
+            --accent-gradient: linear-gradient(135deg, #003366, #008080);
+            --border-color: #e5e5e5;
+            --transition: all 0.3s ease-in-out;
+        }
+
+        html { scroll-behavior: smooth; }
+
+        body {
+            font-family: 'Times New Roman', Times, serif;
+            margin: 0; padding: 0;
+            color: var(--text-main);
+            background: linear-gradient(-45deg, #ffffff, #f4f7f9, #eaeff5, #ffffff);
+            background-size: 400% 400%;
+            animation: subtleBackground 15s ease infinite;
+            line-height: 1.6;
+            overflow-x: hidden;
+            display: flex; flex-direction: column; min-height: 100vh;
+        }
+
+        @keyframes subtleBackground {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        /* --- GLOBAL ANIMATED MATH GRID --- */
+        .math-grid {
+            position: fixed; 
+            top: 0; left: 0; right: 0; bottom: 0;
+            background-image: 
+                linear-gradient(rgba(0, 51, 102, 0.04) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(0, 51, 102, 0.04) 1px, transparent 1px);
+            background-size: 40px 40px;
+            z-index: -1;
+            mask-image: radial-gradient(ellipse at center, black 40%, transparent 80%);
+            -webkit-mask-image: radial-gradient(ellipse at center, black 40%, transparent 80%);
+            animation: panGrid 20s linear infinite;
+        }
+
+        @keyframes panGrid {
+            from { background-position: 0 0; }
+            to { background-position: 40px 40px; }
+        }
+
+        /* --- SCROLL ANIMATION CLASSES --- */
+        .fade-in-element {
+            opacity: 0;
+            transform: translateY(25px);
+            transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+            will-change: opacity, transform;
+        }
+        .fade-in-element.is-visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        a { text-decoration: none; color: var(--accent-color); transition: var(--transition); }
+
+        /* --- HEADER & BRANDING --- */
+        header {
+            background-color: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid var(--border-color);
+            padding: 20px 5%;
+            position: sticky; top: 0; z-index: 1000;
+        }
+
+        .header-container {
+            max-width: 1200px; margin: 0 auto;
+            display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 20px;
+        }
+
+        .brand-wrapper { display: flex; align-items: center; gap: 15px; }
+
+        .logo {
+            height: 65px; width: auto; object-fit: cover;
+            clip-path: inset(4% round 14px); 
+            transition: transform 0.3s ease, filter 0.3s ease;
+        }
+
+        .logo:hover { transform: scale(1.05); filter: brightness(1.15); }
+
+        .brand-text { display: flex; flex-direction: column; overflow: hidden; }
+
+        .name-heading {
+            margin: 0; font-size: 1.75rem; font-weight: bold;
+            background: var(--accent-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            letter-spacing: 0.5px;
+        }
+
+        .tagline {
+            margin: 0; font-size: 0.95rem; font-style: italic; color: var(--text-muted);
+            display: inline-block; white-space: nowrap; overflow: hidden;
+            border-right: 2px solid var(--accent-color);
+            animation: typingCode 3.5s steps(45, end), blinkCursor .75s step-end infinite;
+        }
+
+        @keyframes typingCode { from { width: 0; } to { width: 100%; } }
+        @keyframes blinkCursor { from, to { border-color: transparent; } 50% { border-color: var(--accent-color); } }
+
+        /* --- NAVIGATION --- */
+        nav { display: flex; flex-wrap: wrap; gap: 15px; align-items: center; }
+
+        nav a {
+            color: var(--text-muted); font-size: 0.95rem; padding: 5px 0; position: relative;
+        }
+
+        nav a:hover, nav a.active { color: var(--accent-color); }
+
+        nav a::after {
+            content: ''; position: absolute; width: 0; height: 1px; bottom: 0; left: 0;
+            background-color: var(--accent-color); transition: width 0.3s ease;
+        }
+
+        nav a:hover::after, nav a.active::after { width: 100%; }
+
+        .social-links { display: flex; gap: 15px; }
+        .social-icon { color: var(--text-muted); font-size: 1.2rem; }
+        .social-icon:hover { color: var(--accent-color); transform: translateY(-2px); }
+
+        /* --- RESEARCH COMING SOON SECTION --- */
+        main { 
+            flex-grow: 1; 
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .research-container {
+            text-align: center;
+            padding: 60px 5%;
+            z-index: 10;
+            max-width: 800px;
+        }
+
+        /* --- AI / ML / RAG ORBIT ANIMATIONS --- */
+        .ai-system {
+            position: relative;
+            width: 250px;
+            height: 250px;
+            margin: 0 auto 40px auto;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        /* Central Core */
+        .core {
+            width: 60px;
+            height: 60px;
+            background: var(--accent-gradient);
+            border-radius: 50%;
+            position: relative;
+            z-index: 5;
+            box-shadow: 0 0 30px rgba(0, 128, 128, 0.6);
+            animation: corePulse 2s ease-in-out infinite alternate;
+        }
+
+        .core::after {
+            content: '\f1e2'; /* FontAwesome brain icon */
+            font-family: 'Font Awesome 6 Free';
+            font-weight: 900;
+            color: white;
+            font-size: 1.5rem;
+            position: absolute;
+            top: 50%; left: 50%;
+            transform: translate(-50%, -50%);
+        }
+
+        @keyframes corePulse {
+            0% { transform: scale(0.9); box-shadow: 0 0 20px rgba(0, 128, 128, 0.4); }
+            100% { transform: scale(1.1); box-shadow: 0 0 50px rgba(0, 51, 102, 0.8); }
+        }
+
+        /* Orbit Rings */
+        .orbit {
+            position: absolute;
+            border-radius: 50%;
+            border: 1px dashed rgba(0, 51, 102, 0.3);
+            top: 50%; left: 50%;
+            transform: translate(-50%, -50%);
+        }
+
+        .orbit-1 { width: 140px; height: 140px; animation: spin 12s linear infinite; }
+        .orbit-2 { width: 220px; height: 220px; animation: spinReverse 18s linear infinite; }
+        .orbit-3 { width: 300px; height: 300px; animation: spin 24s linear infinite; border: 1px dotted rgba(0, 128, 128, 0.2); }
+
+        /* Orbiting Nodes */
+        .node {
+            position: absolute;
+            width: 35px;
+            height: 35px;
+            background: #ffffff;
+            border: 2px solid var(--accent-color);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.8rem;
+            font-weight: bold;
+            color: var(--accent-color);
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+        }
+
+        /* Counter-rotation to keep text/icons upright */
+        .node-inner { animation: spinReverse 12s linear infinite; display: flex; align-items: center; justify-content: center; width: 100%; height: 100%; }
+        .orbit-2 .node-inner { animation: spin 18s linear infinite; }
+        .orbit-3 .node-inner { animation: spinReverse 24s linear infinite; }
+
+        /* Positioning Nodes on Rings */
+        .orbit-1 .node { top: -17px; left: 50%; transform: translateX(-50%); }
+        .orbit-2 .node { top: 50%; right: -17px; transform: translateY(-50%); }
+        .orbit-3 .node { bottom: -17px; left: 50%; transform: translateX(-50%); }
+
+        @keyframes spin { 100% { transform: translate(-50%, -50%) rotate(360deg); } }
+        @keyframes spinReverse { 100% { transform: translate(-50%, -50%) rotate(-360deg); } }
+
+        /* Text Styles */
+        .research-title {
+            font-size: 3rem;
+            color: var(--text-main);
+            margin: 0 0 10px 0;
+            font-weight: normal;
+        }
+
+        .shimmer-text {
+            background: linear-gradient(90deg, var(--text-main) 0%, #008080 30%, var(--text-main) 60%);
+            background-size: 200% auto; color: transparent;
+            -webkit-background-clip: text; background-clip: text;
+            animation: dataShimmer 3.5s linear infinite; font-weight: bold;
+        }
+
+        @keyframes dataShimmer { to { background-position: 200% center; } }
+
+        .research-subtitle {
+            font-size: 1.2rem;
+            color: var(--text-muted);
+            margin-bottom: 30px;
+            font-style: italic;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+            position: relative;
+        }
+
+        /* Terminal Typing Effect */
+        .typing-container {
+            display: inline-block;
+            border-right: 2px solid var(--accent-color);
+            white-space: nowrap;
+            overflow: hidden;
+            animation: typingResearch 4s steps(50, end), blinkCursor .75s step-end infinite;
+        }
+
+        @keyframes typingResearch {
+            from { width: 0; }
+            to { width: 100%; }
+        }
+
+        /* --- FLOATING MATH & STATS PARTICLES --- */
+        .math-particle {
+            position: absolute;
+            font-family: 'Times New Roman', Times, serif;
+            font-size: 1.5rem;
+            color: var(--accent-color);
+            opacity: 0;
+            z-index: 1;
+            pointer-events: none;
+            filter: blur(0.5px);
+        }
+
+        .p1 { top: 80%; left: 10%; font-size: 2rem; animation: floatUp 12s linear infinite; }
+        .p2 { top: 90%; left: 30%; font-size: 1.2rem; animation: floatUp 15s linear infinite 2s; }
+        .p3 { top: 85%; right: 20%; font-size: 1.8rem; animation: floatUp 10s linear infinite 1s; }
+        .p4 { top: 95%; right: 40%; font-size: 1.4rem; animation: floatUp 14s linear infinite 4s; }
+        .p5 { top: 75%; right: 8%; font-size: 2.5rem; animation: floatUp 18s linear infinite 3s; }
+        .p6 { top: 88%; left: 50%; font-size: 1.5rem; animation: floatUp 11s linear infinite 5s; }
+
+        @keyframes floatUp {
+            0% { transform: translateY(0) rotate(0deg); opacity: 0; }
+            10% { opacity: 0.15; }
+            50% { transform: translateY(-40vh) rotate(15deg); opacity: 0.3; }
+            90% { opacity: 0.15; }
+            100% { transform: translateY(-80vh) rotate(30deg); opacity: 0; }
+        }
+
+        /* --- FOOTER --- */
+        footer {
+            border-top: 1px solid var(--border-color); padding: 30px 5%; text-align: center; margin-top: auto; position: relative; z-index: 10;
+        }
+
+        .copyright-tag { margin: 0; font-size: 0.9rem; color: var(--text-muted); }
+
+        /* --- RESPONSIVE DESIGN --- */
+        @media (max-width: 992px) {
+            .header-container { flex-direction: column; align-items: center; gap: 15px; }
+            .brand-wrapper { flex-direction: column; text-align: center; }
+            .social-links { position: static; }
+            nav { justify-content: center; }
+        }
+
+        @media (max-width: 768px) {
+            .research-title { font-size: 2.2rem; }
+            .research-subtitle { font-size: 1rem; }
+            .ai-system { transform: scale(0.8); margin-bottom: 20px; }
+            .typing-container { white-space: normal; border-right: none; animation: none; width: auto; }
+            nav {
+                flex-wrap: nowrap; overflow-x: auto; width: 100%; justify-content: flex-start;
+                padding-bottom: 5px; -webkit-overflow-scrolling: touch; scrollbar-width: none; 
+            }
+            nav::-webkit-scrollbar { display: none; }
+            nav a { white-space: nowrap; }
+        }
+
+        @media (max-width: 480px) {
+            header { padding: 15px 5%; }
+            .name-heading { font-size: 1.5rem; }
+            .tagline { white-space: normal; border-right: none; font-size: 0.85rem; }
+            .ai-system { transform: scale(0.65); }
+        }
+    </style>
+</head>
+
+<body>
+
+<header>
+    <div class="header-container">
+        <div class="brand-wrapper">
+            <img src="../images/logo.jpg" alt="AIMatrix Logo" class="logo" onerror="this.style.display='none'">
+            <div class="brand-text">
+                <h1 class="name-heading">Khushi Malik</h1>
+                <p class="tagline">Mathematics Undergraduate • AI/ML Researcher</p>
+            </div>
+        </div>
+        
+        <nav>
+            <a href="../about.html">About</a>
+            <a href="education and experience.html">Education & Experience</a>
+            <a href="projects.html">Projects</a>
+            <a href="research.html" class="active">Research</a>
+            <a href="achievements.html">Achievements</a>
+            <a href="engagements.html">Engagements</a>
+            <a href="certifications.html">Certifications</a>
+            <a href="resume.html">Resume</a>
+            <a href="gallery.html">Gallery</a>
+        </nav>
+        
+        <div class="social-links">
+            <a href="https://www.linkedin.com/in/khushi-6b972b280/" target="_blank" class="social-icon" title="LinkedIn">
+                <i class="fab fa-linkedin-in"></i>
+            </a>
+            <a href="https://github.com/khushimalik3122/" target="_blank" class="social-icon" title="GitHub">
+                <i class="fab fa-github"></i>
+            </a>
+            <a href="mailto:khushimalik511263@gmail.com" class="social-icon" title="Email">
+                <i class="fas fa-envelope"></i>
+            </a>
+        </div>
+    </div>
+</header>
+
+<main>
+    <div class="math-grid"></div>
+
+    <!-- Floating Background Mathematics & Stats -->
+    <div class="math-particle p1">∫ f(x)dx</div>
+    <div class="math-particle p2">P(A|B) = P(B|A)P(A)/P(B)</div>
+    <div class="math-particle p3">∇²f</div>
+    <div class="math-particle p4">σ² = E[(X - μ)²]</div>
+    <div class="math-particle p5">∑</div>
+    <div class="math-particle p6">W^T X + b</div>
+
+    <section class="research-container fade-in-element">
+        
+        <!-- Animated AI/ML Core System -->
+        <div class="ai-system">
+            <div class="core"></div>
+            
+            <div class="orbit orbit-1">
+                <div class="node"><div class="node-inner" title="Retrieval-Augmented Generation">RAG</div></div>
+            </div>
+            
+            <div class="orbit orbit-2">
+                <div class="node"><div class="node-inner" title="Multi-Agent Systems"><i class="fas fa-network-wired"></i></div></div>
+            </div>
+
+            <div class="orbit orbit-3">
+                <div class="node"><div class="node-inner" title="Large Language Models">LLM</div></div>
+            </div>
+        </div>
+
+        <h1 class="research-title">Research <span class="shimmer-text">Coming Soon</span></h1>
+        
+        <div class="research-subtitle">
+            <div class="typing-container">
+                Synthesizing data, training models, and deploying multi-agent systems...
+            </div>
+        </div>
+
+    </section>
+</main>
+
+<footer>
+    <p class="copyright-tag">© 2026 Khushi Malik • Built with Precision</p>
+</footer>
+
+<script>
+    document.addEventListener("DOMContentLoaded", () => {
+        const observerOptions = { root: null, rootMargin: '0px', threshold: 0.15 };
+
+        const scrollObserver = new IntersectionObserver((entries, observer) => {
+            entries.forEach((entry, index) => {
+                if (entry.isIntersecting) {
+                    setTimeout(() => {
+                        entry.target.classList.add('is-visible');
+                    }, index * 100);
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, observerOptions);
+
+        const animatedElements = document.querySelectorAll('.fade-in-element');
+        animatedElements.forEach(el => scrollObserver.observe(el));
+    });
+</script>
+
+</body>
+</html>
