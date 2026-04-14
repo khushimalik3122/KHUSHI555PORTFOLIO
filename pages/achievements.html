@@ -255,6 +255,39 @@
             color: var(--text-main);
         }
 
+        /* --- PRIZE MONEY ANIMATION --- */
+        .prize-pill {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: linear-gradient(90deg, #d4af37, #fff176, #d4af37);
+            background-size: 200% auto;
+            color: #1a1a1a;
+            padding: 6px 14px;
+            border-radius: 20px;
+            font-weight: bold;
+            font-size: 0.95rem;
+            margin-bottom: 12px;
+            box-shadow: 0 4px 12px rgba(212, 175, 55, 0.4);
+            animation: goldShine 3s linear infinite, floatBounce 3s ease-in-out infinite;
+            border: 1px solid #e5c158;
+            width: fit-content;
+        }
+
+        .prize-pill i {
+            color: #1a1a1a;
+            font-size: 1.1rem;
+        }
+
+        @keyframes goldShine {
+            to { background-position: 200% center; }
+        }
+
+        @keyframes floatBounce {
+            0%, 100% { transform: translateY(0); box-shadow: 0 4px 12px rgba(212, 175, 55, 0.4); }
+            50% { transform: translateY(-4px); box-shadow: 0 8px 20px rgba(212, 175, 55, 0.7); }
+        }
+
         /* Action Button */
         .btn-action {
             display: inline-flex;
@@ -369,6 +402,7 @@
                 </div>
                 <div class="achievement-content">
                     <h3 class="achievement-title">3rd Place: Unido AfricaRice App Builder Challenge</h3>
+                    <div class="prize-pill"><i class="fas fa-coins"></i> Won $1,000 USD Prize</div>
                     <p class="achievement-description">
                         Secured <span class="highlight-text">3rd Place (3/56)</span> globally on Zindi. Built an Edge AI smartphone app to replace the rice quality assessment lab using Model Deployment and App Development strategies.
                     </p>
@@ -386,6 +420,7 @@
                 </div>
                 <div class="achievement-content">
                     <h3 class="achievement-title">Top 10%: Amini GeoFM Decoding the Field</h3>
+                    <div class="prize-pill"><i class="fas fa-coins"></i> Won $500 USD Prize</div>
                     <p class="achievement-description">
                         Ranked in the <span class="highlight-text">Top 10% (10/136)</span> globally. Successfully trained a geospatial foundation model to classify crops from Space imagery.
                     </p>
